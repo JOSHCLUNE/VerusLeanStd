@@ -2,6 +2,7 @@ import Std.Data.Int.Basic
 import Mathlib -- This import is clunky, but it makes using Aesop a lot easier.
 
 -- This file is for miscellaneous comments about translating between Verus and Lean.
+-- The Verus PR that this repository is meant to translate is at: https://github.com/ahuoguo/verus/pull/3
 
 /- Current translation status:
   - source/pervasive/nonlinear_arith/internals/mul_internals_nonlinear.rs ↦ MulInternalNonlinear.lean

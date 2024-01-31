@@ -20,11 +20,13 @@ pub open spec fn div_pos(x: int, d: int) -> int
 }
 -/
 def verus_div_pos (x d : Int) : Int :=
-  if x < 0 then -1 + verus_div_pos (x + d) d
-  else if x < d then 0
+  if h1 : x < 0 then -1 + verus_div_pos (x + d) d
+  else if h2 : x < d then 0
   else 1 + verus_div_pos (x - d) d
-termination_by verus_div_pos x d => |x|
+termination_by verus_div_pos x d => if x < 0 then d - x else x
 decreasing_by
+  -- TODO: Termination is only guaranteed if d > 0. Should we add that as a precondition?
+  -- How do we want to translate Verus' "decreases ... when ..." syntax?
   sorry
 
 /-

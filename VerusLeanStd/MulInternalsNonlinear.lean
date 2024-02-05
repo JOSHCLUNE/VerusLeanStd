@@ -54,7 +54,26 @@ pub proof fn lemma_mul_ordering(x: int, y: int)
 {}
 -/
 theorem verus_lemma_mul_ordering (x y : Int) (h1 : x ≠ 0) (h2 : y ≠ 0) (h3 : 0 ≤ x * y) : x * y ≥ x ∧ x * y ≥ y := by
-  sorry
+  have h' : ∀ x y : Int, x ≠ 0 → y ≠ 0 → 0 ≤ x * y → x * y ≥ x := by
+    intros x y h1 h2 h3
+    by_cases h4 : x > 0
+    . apply le_mul_of_one_le_right (Int.nonneg_of_pos h4)
+      have h5 : y < 0 ∨ 1 ≤ y := by
+        rw [← Int.zero_add 1, Int.add_one_le_iff]
+        exact Int.lt_or_gt_of_ne h2
+      rcases h5 with h5 | h5
+      . have := Int.mul_neg_of_pos_of_neg h4 h5
+        linarith
+      . exact h5
+    . have h5 : x < 0 := by
+        simp only [gt_iff_lt, not_lt] at h4
+        exact lt_of_le_of_ne h4 h1
+      linarith
+  constructor
+  . exact h' x y h1 h2 h3
+  . rw [mul_comm] at h3
+    rw [mul_comm]
+    exact h' y x h2 h1 h3
 
 /-
 /* multiplying by a positive integer preserves inequality */
@@ -67,7 +86,7 @@ pub proof fn lemma_mul_strict_inequality(x: int, y: int, z: int)
         x * z < y * z
 {}
 -/
-theorem verus_lemma_mul_strict_inequality (x y z : Int) (h1 : x < y) (h2 : z > 0) : x * z < y * z := by
-  sorry
+theorem verus_lemma_mul_strict_inequality (x y z : Int) (h1 : x < y) (h2 : z > 0) : x * z < y * z :=
+  Int.mul_lt_mul_of_pos_right h1 h2
 
 -- Everything in source/pervasive/nonlinear_arith/internals/mul_internals_nonlinear.rs has been moved to this file

@@ -9,7 +9,7 @@ import Mathlib -- This import is clunky, but it makes using Aesop a lot easier.
     - Fully translated and proven
     - Note: The Verus forms of these theorems appear to have some redundant/unnecessary preconditions
   - source/pervasive/nonlinear_arith/internals/mul_internals_nonlinear.rs ↦ MulInternalsNonlinear.lean
-    - Fully translated (not proven)
+    - Fully translated and proven
   - source/pervasive/nonlinear_arith/internals/general_internals.rs ↦ GeneralInternals.lean
     - Fully translated (not proven)
   - source/pervasive/nonlinear_arith/internals/div_internals.rs ↦ DivInternals.lean
@@ -21,6 +21,9 @@ import Mathlib -- This import is clunky, but it makes using Aesop a lot easier.
   - source/pervasive/nonlinear_arith/math.rs doesn't warrant translation
   - source/pervasive/nonlinear_arith/mod.rs doesn't warrant translation
   - source/pervasive/nonlinear_arith/internals/mod.rs doesn't warrant translation
+  - source/pervasive/nonlinear_arith/internals/mod_internals_nonlinear.rs ↦ ModInternalsNonlinear.lean
+    - Fully translated and proven
+    - Note: The Verus forms of these theorems appear to have some redundant/unnecessary preconditions
   - Everything else
     - Not at all translated yet
 -/
